@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Greeter Integration</title>
+</head>
+
+<body>
+    <div id="my-component"></div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="compiled-greeter-component.iife.js"></script>
+    <script>
+        Greeter.init('#my-component', {
+            message: 'Hello from the host app!',
+            buttonText: 'Say Hello'
+        });
+    </script>
+</body>
+
+</html>

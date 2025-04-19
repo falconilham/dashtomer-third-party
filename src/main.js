@@ -1,5 +1,15 @@
 import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import Greeter from './components/Greeter.vue'
 
-createApp(App).mount('#app')
+window.Greeter = {
+    init(selector, props) {
+        console.log('Greeter.init', selector, props)
+        const el = document.querySelector(selector)
+        if (el) {
+            const app = createApp(Greeter, props)
+            app.mount(el)
+        } else {
+            console.error('Element not found:', selector)
+        }
+    }
+}
