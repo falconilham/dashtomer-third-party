@@ -2,18 +2,78 @@
 <html lang="en">
 
 <head>
-    <title>Greeter Integration</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Greeter Component Standalone Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="my-component"></div>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-    <script src="compiled-greeter-component.iife.js"></script>
+    <h1>Vue Greeter Component Example</h1>
+
+    <div class="container">
+        <h2>Default Configuration</h2>
+        <div id="greeter-default"></div>
+    </div>
+
+    <div class="container">
+        <h2>Custom Configuration</h2>
+        <div id="greeter-custom"></div>
+    </div>
+
+    <!-- Load the compiled component directly from the dist folder -->
+    <script src="./compiled-greeter-component.umd.js"></script>
+
     <script>
-        Greeter.init('#my-component', {
-            message: 'Hello from the host app!',
-            buttonText: 'Say Hello'
+        // Add error handling
+        window.addEventListener('error', function (event) {
+            console.error('Caught error:', event.error);
+            document.body.innerHTML += `
+        <div style="color: red; padding: 10px; margin: 10px 0; border: 1px solid red;">
+          <strong>Error:</strong> ${event.error.message}
+        </div>
+      `;
         });
+
+        // Try to initialize the Greeter
+        try {
+            if (window.Greeter) {
+                console.log('Greeter component loaded successfully');
+
+                // Initialize with default settings
+                Greeter.init('#greeter-default');
+
+                // Initialize with custom settings
+                Greeter.init('#greeter-custom', {
+                    message: 'Hello from the host app!',
+                    buttonText: 'Press to greet'
+                });
+            } else {
+                throw new Error('Greeter component failed to load');
+            }
+        } catch (err) {
+            console.error('Error initializing Greeter:', err);
+            document.body.innerHTML += `
+        <div style="color: red; padding: 10px; margin: 10px 0; border: 1px solid red;">
+          <strong>Error initializing:</strong> ${err.message}
+        </div>
+      `;
+        }
     </script>
 </body>
 

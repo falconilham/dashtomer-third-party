@@ -1,18 +1,30 @@
 {
-  "name": "greeter-component",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "vue-greeter-component",
+  "version": "1.0.0",
+  "description": "A standalone Vue.js component for third-party integration",
+  "main": "dist/compiled-greeter-component.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "preview": "vite preview"
   },
+  "keywords": [
+    "vue",
+    "component",
+    "third-party"
+  ],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "vue": "^3.5.13"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.2",
-    "vite": "^6.3.1"
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^22.1.0",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.2"
   }
 }

@@ -1,24 +1,27 @@
-// vite.config.js
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
+
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [vue()],
+  define: {
+    'process.env': {},
+  },
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/main.js'),
+      entry: resolve(__dirname, 'src/main.js'),
       name: 'Greeter',
-      fileName: 'compiled-greeter-component',
-      formats: ['iife']
+      fileName: (format) => `compiled-greeter-component.${format}.js`,
+      formats: ['umd'],
     },
     rollupOptions: {
-      external: ['vue'],
+      external: [],
       output: {
-        globals: {
-          vue: 'Vue'
-        }
-      }
-    }
-  }
-})
+        globals: {},
+      },
+    },
+    minify: true,
+    sourcemap: true,
+  },
+});
