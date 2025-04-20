@@ -16,12 +16,12 @@ export default {
     }
   },
   mounted() {
-    console.log({ props: this.$props });
+    console.log('Greeter component mounted with props:', this.$props);
   },
   methods: {
     handleClick() {
-      console.log({ message: this.message });
-      alert(this.message); // show an alert for visual confirmation
+      console.log(this.message);
+      alert(this.message); // Also show an alert for visual confirmation
     }
   }
 }
